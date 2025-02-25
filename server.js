@@ -5,11 +5,15 @@ const session = require('express-session');
 const Sequelize = require('sequelize');
 const path = require('path');
 const morgan = require('morgan');
+const fs = require('fs');
 
 const app = express();
-const port = 3000;
+const port = 80;
 
-app.use(morgan('combined'));
+// Crea un stream de escritura para el archivo de logs
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // Configuración de Sequelize y SQLite
 const sequelize = new Sequelize({
