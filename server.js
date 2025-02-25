@@ -4,9 +4,12 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const Sequelize = require('sequelize');
 const path = require('path');
+const morgan = require('morgan');
 
 const app = express();
 const port = 3000;
+
+app.use(morgan('combined'));
 
 // Configuración de Sequelize y SQLite
 const sequelize = new Sequelize({
@@ -128,3 +131,5 @@ sequelize.sync().then(() => {
         console.log(`Servidor escuchando en http://localhost:${port}`);
     });
 });
+
+//getgetgotgotloot@!
